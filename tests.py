@@ -27,6 +27,8 @@ def test_minimum_gun_distance_check():
 def test_gun_distance():
     expected_distance = 1000  # metres
     expected_required_time = expected_distance / speed_of_light  # seconds
+    # this time needs to be doubled, since it is a turnaround time and not just the time from the gun to reflector
+    expected_required_time *= 2
     expected_required_time *= 1000000000  # nanoseconds
     distance_checker = DistanceChecker(file_path=test_file_path)
     expected_start_time = 0
