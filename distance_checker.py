@@ -1,4 +1,5 @@
 import json
+import argparse
 
 speed_of_light = 299792458  # metres per second
 
@@ -8,6 +9,15 @@ class DistanceChecker:
         self.file_path = file_path
         self.minimum_gun_distance_away = minimum_gun_distance_away
         self.data = []
+
+    def run(self):
+        print('Loading in data')
+        self.load_data()
+        print('Calculating valid guns at least {} metres away'.format(self.minimum_gun_distance_away))
+        valid_guns = self.get_valid_guns()
+        print('Valid guns:')
+        for gun in valid_guns:
+            print('Gun: {} is {} metres away'.format(gun['name'], gun['distance']))
 
     def load_data(self):
         with open(self.file_path, 'r') as data_file:
@@ -27,7 +37,7 @@ class DistanceChecker:
         # since we assume that the speed of light remains constant, the time to the reflector and the time back can be
         # safely assumed to be equal
         time_to_reflector = turnaround_time / 2
-        # time to reflector is in nano-seconds and needs to be converted to seconds
+        # time to reflector is in nanoseconds and needs to be converted to seconds
         # for the distance calculation to be in metres
         time_to_reflector /= 1000000000
         distance_to_reflector = speed_of_light * time_to_reflector
@@ -40,10 +50,16 @@ class DistanceChecker:
                 start_timestamp=gun['t0'],
                 end_timestamp=gun['t1']
             )
+            # add in the distance for printing later
+            gun['distance'] = distance
             if not self.gun_is_too_close(distance=distance):
                 valid_guns.append(gun)
         return valid_guns
 
 
 if __name__ == '__main__':
-    pass
+    # parser = argparse.ArgumentParser()
+    # parser.add_argument()
+    # parser.parse_args()
+    distance_checker = DistanceChecker(file_path='data/sample.in')
+    distance_checker.run()

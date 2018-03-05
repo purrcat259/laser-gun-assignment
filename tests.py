@@ -25,6 +25,7 @@ def test_minimum_gun_distance_check():
     assert False is distance_checker.gun_is_too_close(test_distance_away + 1)
 
 
+# Each distance is given as metres
 @pytest.mark.parametrize('expected_distance', [
     9.9,
     100,
