@@ -1,6 +1,7 @@
 import json
 
-speed_of_light =
+speed_of_light = 299792458  # metres per second
+
 
 class DistanceChecker:
     def __init__(self, file_path, minimum_gun_distance_away=112000):
@@ -25,8 +26,7 @@ class DistanceChecker:
         # since we assume that the speed of light remains constant, the time to the reflector and the time back can be
         # safely assumed to be equal
         time_to_reflector = turnaround_time / 2
-
-
+        
 
 if __name__ == '__main__':
     pass
