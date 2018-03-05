@@ -1,4 +1,5 @@
 import os
+import pytest
 
 from distance_checker import DistanceChecker, speed_of_light
 
@@ -24,8 +25,14 @@ def test_minimum_gun_distance_check():
     assert False is distance_checker.gun_is_too_close(test_distance_away + 1)
 
 
-def test_gun_distance():
-    expected_distance = 1000  # metres
+@pytest.mark.parametrize('expected_distance', [
+    10,
+    100,
+    1000,
+    1000.0,
+    100.101
+])
+def test_gun_distance(expected_distance):
     expected_required_time = expected_distance / speed_of_light  # seconds
     # this time needs to be doubled, since it is a turnaround time and not just the time from the gun to reflector
     expected_required_time *= 2

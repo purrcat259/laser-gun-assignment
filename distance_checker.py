@@ -27,10 +27,13 @@ class DistanceChecker:
         # since we assume that the speed of light remains constant, the time to the reflector and the time back can be
         # safely assumed to be equal
         time_to_reflector = turnaround_time / 2
-        # time to reflector is in nano-seconds and needs to be converted to seconds for the distance calculation to be in metres
+        # time to reflector is in nano-seconds and needs to be converted to seconds
+        # for the distance calculation to be in metres
         time_to_reflector /= 1000000000
         distance_to_reflector = speed_of_light * time_to_reflector
         return distance_to_reflector
+
+    
 
 
 if __name__ == '__main__':
