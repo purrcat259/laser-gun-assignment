@@ -26,7 +26,7 @@ def test_minimum_gun_distance_check():
 
 
 @pytest.mark.parametrize('expected_distance', [
-    10,
+    9.9,
     100,
     1000,
     1000.0,
