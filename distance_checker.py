@@ -33,7 +33,16 @@ class DistanceChecker:
         distance_to_reflector = speed_of_light * time_to_reflector
         return distance_to_reflector
 
-    
+    def get_valid_guns(self):
+        valid_guns = []
+        for gun in self.data:
+            distance = self.calculate_gun_distance(
+                start_timestamp=gun['t0'],
+                end_timestamp=gun['t1']
+            )
+            if not self.gun_is_too_close(distance=distance):
+                valid_guns.append(gun)
+        return valid_guns
 
 
 if __name__ == '__main__':

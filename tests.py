@@ -28,9 +28,9 @@ def test_minimum_gun_distance_check():
 @pytest.mark.parametrize('expected_distance', [
     9.9,
     100,
+    100.101,
     1000,
-    1000.0,
-    100.101
+    1000.0
 ])
 def test_gun_distance(expected_distance):
     expected_required_time = expected_distance / speed_of_light  # seconds
@@ -45,3 +45,11 @@ def test_gun_distance(expected_distance):
         end_timestamp=expected_end_time
     )
     assert expected_distance == actual_distance
+
+
+def test_get_valid_guns():
+    test_distance_away = 0  # 0 distance so all are returned
+    distance_checker = DistanceChecker(file_path=test_file_path, minimum_gun_distance_away=test_distance_away)
+    distance_checker.load_data()
+    valid_guns = distance_checker.get_valid_guns()
+    assert 2 == len(valid_guns)
