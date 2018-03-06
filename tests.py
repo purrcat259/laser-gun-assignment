@@ -30,6 +30,7 @@ def test_minimum_gun_distance_check():
     9.9,
     100,
     100.101,
+    534.64,
     1000,
     1000.0
 ])
