@@ -29,4 +29,6 @@ Pytest is required to be installed to run the tests. To run them:
 
 `pytest tests.py`
 
+## Licence
 
+MIT
